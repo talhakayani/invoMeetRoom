@@ -1,4 +1,4 @@
-const { CalendarConfig } = require('../../models');
+const { CalendarConfig } = require('../models');
 
 exports.addToken = async (req, res, _next) => {
   try {

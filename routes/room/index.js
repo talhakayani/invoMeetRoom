@@ -1,4 +1,4 @@
-const controller = require('../../controller/roomController/room.controller');
+const controller = require('../../controller/room.controller');
 const router = require('express').Router();
 router.get('/', controller.getAllRooms);
 router.get('/ids/:name', controller.getRoomId);

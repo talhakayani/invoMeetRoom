@@ -1,4 +1,4 @@
-const { Room, Meeting } = require('../../models');
+const { Room, Meeting } = require('../models');
 exports.getPost = (req, res, _next) => {
   return res.status(200).json({ status: 200, message: 'Server is connected' });
 };

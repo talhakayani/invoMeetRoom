@@ -1,12 +1,12 @@
 const {
   generateMessageForUpdate,
-} = require('../../services/messages/messageServices');
+} = require('../services/messages/message.services');
 const { scheduleJob } = require('node-schedule');
 const {
   updateMessage,
   sendPrivateMessage,
   getUsersInformation,
-} = require('../../services/commands/commandServices');
+} = require('../services/commands/command.services');
 const {
   updateMeetingStatus,
   addInvoMeeting,
@@ -14,14 +14,14 @@ const {
   addGoogleAuthToken,
   getInformationByMeetingId,
   removeHistory,
-} = require('../../services/api/apiServices');
+} = require('../services/api/api.services');
 require('dotenv').config('../../.env');
 const fs = require('fs');
-const { authorize } = require('../../services/google_calander/auth');
+const { authorize } = require('../services/google_calander/auth');
 const {
   addEvent,
   deleteGoogleCalendarEvent,
-} = require('../../services/google_calander/utils/operations');
+} = require('../services/google_calander/utils/operations');
 const {
   insertInformation,
   getInformationFromTheFile,
@@ -29,7 +29,7 @@ const {
   sendErrorMessage,
   eventForGoogleCalendar,
   getDateAndTime,
-} = require('../../services/utils/helperFunctions');
+} = require('../services/utils/helper-functions');
 
 exports.interactions = async (req, res, _next) => {
   try {

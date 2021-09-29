@@ -1,4 +1,4 @@
-const interactivity = require('../../controller/interactions/interactionController');
+const interactivity = require('../../controller/interaction.controller');
 const router = require('express').Router();
 
 router.use('/buttons', interactivity.interactions);

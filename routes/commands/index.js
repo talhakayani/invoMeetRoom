@@ -1,4 +1,4 @@
-const controller = require('../../controller/commands/commandsController');
+const controller = require('../../controller/commands.controller');
 const router = require('express').Router();
 
 router.post('/rooms-available', controller.roomsAvailable);
