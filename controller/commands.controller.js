@@ -1,23 +1,23 @@
 const {
   sendPrivateMessage,
   sendMessageToSlackUrl,
-} = require('../../services/commands/commandServices');
+} = require('../services/commands/command.services');
 const {
   generateMessageForRooms,
   generateMesssageForMeetings,
   generateMessageForMeetingHistory,
-} = require('../../services/messages/messageServices');
+} = require('../services/messages/message.services');
 const {
   getAllRooms,
   getGoogleAuthToken,
   getInProgressMeetingsByUser,
   getAllRoomsWithAllMeetingsInProgress,
   getMeetingHistory,
-} = require('../../services/api/apiServices');
+} = require('../services/api/api.services');
 require('dotenv').config('../../.env');
 const fs = require('fs');
-const { sendErrorMessage } = require('../../services/utils/helperFunctions');
-const { authorize } = require('../../services/google_calander/auth');
+const { sendErrorMessage } = require('../services/utils/helper-functions');
+const { authorize } = require('../services/google_calander/auth');
 
 exports.roomsAvailable = async (req, res, _next) => {
   try {

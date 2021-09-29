@@ -2,9 +2,9 @@ const { google } = require('googleapis');
 require('dotenv').config('../../.env');
 const fs = require('fs');
 const { addEvent } = require('../../services/google_calander/utils/operations');
-const { sendMessageToSlackUrl } = require('../commands/commandServices');
-const { generateMessageForToken } = require('../messages/messageServices');
-const { getTokenData, getGoogleAuthToken } = require('../api/apiServices');
+const { sendMessageToSlackUrl } = require('../commands/command.services');
+const { generateMessageForToken } = require('../messages/message.services');
+const { getTokenData, getGoogleAuthToken } = require('../api/api.services');
 const SCOPES = ['https://www.googleapis.com/auth/calendar'];
 
 exports.authorize = async (credentials, channel_id, user_id, forResponse) => {

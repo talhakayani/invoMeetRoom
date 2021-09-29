@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const app = require('../../connection/slackConnection');
-const { getUsersInformation } = require('../commands/commandServices');
+const app = require('../../connection/slack.connection');
+const { getUsersInformation } = require('../commands/command.services');
 
 // this function will save the information for single time
 exports.insertInformation = (fileName, data, type) => {

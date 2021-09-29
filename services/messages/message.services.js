@@ -1,9 +1,9 @@
-const { getUsersInformation } = require('../commands/commandServices');
-const { getAllRooms, getRoomInfoByName } = require('../api/apiServices');
+const { getUsersInformation } = require('../commands/command.services');
+const { getAllRooms, getRoomInfoByName } = require('../api/api.services');
 const {
   generatedTextForUsers,
   getDateAndTime,
-} = require('../utils/helperFunctions');
+} = require('../utils/helper-functions');
 exports.generateMessageForRooms = rooms => {
   let roomsRecord = [
     {
