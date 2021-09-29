@@ -1,7 +1,5 @@
 'use strict';
 
-//const { DataTypes } = require('sequelize/types');
-
 module.exports = {
   up: async (queryInterface, DataTypes) => {
     await queryInterface.createTable('rooms', {

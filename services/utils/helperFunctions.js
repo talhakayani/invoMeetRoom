@@ -2,21 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const app = require('../../connection/slackConnection');
 const { getUsersInformation } = require('../commands/commandServices');
-// exports.findMentions = text => {
-//   const exp = /<(.*?)>/;
-//   var test = text.match(exp);
-//   var finalValue = [];
-//   while (test) {
-//     finalValue.push(test[0].split('|')[0].replace('<@', ''));
-//     text = text.replace(exp, '');
-//     test = text.match(exp);
-//   }
-//   if (!finalValue.lenght) return [];
-//   return finalValue;
-// };
+
 // this function will save the information for single time
 exports.insertInformation = (fileName, data, type) => {
-  //path = '../../tempData.json';
   let readedJSON = {};
   if (!fs.existsSync(fileName)) {
     fs.writeFileSync(fileName, '');
@@ -99,11 +87,7 @@ exports.sendErrorMessage = message => {
 const TIMEOFFSET = '+05:00';
 
 const dateTimeForCalander = (dateTime, hours = 1) => {
-  // const [date, time] = dateTime.split('=');
-  //const [year, month, day] = date.split('-');
-  //const [hours, minutes] = time.split(':');
   dateTime.replace(/-/g, ' ');
-  //const newDate = `${date}T${time}:00.000${TIMEOFFSET}`;
   const event = new Date(dateTime);
   const startDate = event;
   const endDate = new Date(

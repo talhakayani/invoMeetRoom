@@ -35,6 +35,37 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       tableName: 'rooms',
       modelName: 'Room',
+      hooks: {
+        /**
+         *  Before CRUD operations hooks
+         */
+        beforeValidate(rooms, options) {
+          console.log('Room Before validate', rooms, options);
+        },
+        beforeCreate(rooms, options) {
+          console.log('Room Before Create', rooms, options);
+        },
+
+        beforeDestroy(rooms, options) {
+          console.log('Room Before Destroy', rooms, options);
+        },
+
+        /**
+         *  After CRUD operations hooks
+         */
+        afterValidate(rooms, options) {
+          console.log('Room After Validate', rooms, options);
+        },
+        afterCreate(rooms, options) {
+          console.log('Room After Create', rooms, options);
+        },
+        afterUpdate(rooms, options) {
+          console.log('Room After Update', rooms, options);
+        },
+        afterDestroy(rooms, options) {
+          console.log('Room After Destroy', rooms, options);
+        },
+      },
     }
   );
   return Room;

@@ -37,16 +37,13 @@ exports.interactions = async (req, res, _next) => {
     const payload = JSON.parse(req.body.payload);
     const { user, actions, container, channel } = payload;
     const credentials = JSON.parse(process.env.CREDENTIALS);
-    // const actions = payload.actions;
     if (!actions.length)
       return res.status(400).send('Please interact with elements');
     const [data] = actions;
 
     const { action_id } = data;
-    //console.log(action_id);
     let information,
       btnClicked = false;
-    // console.log(action_id);
 
     if (action_id == 'room-selection') {
       information =
@@ -129,7 +126,6 @@ exports.interactions = async (req, res, _next) => {
       const roomId = await getRoomIdByRoomName(
         selectedInformation.selected_room
       );
-      //  console.log(roomId);
       const meeting = await addInvoMeeting(
         user.id,
         selectedInformation.selected_users + '',
@@ -324,7 +320,6 @@ exports.interactions = async (req, res, _next) => {
       return res.status(200).send();
     }
     if (!btnClicked) {
-      //  console.log('it is running...');
       insertInformation(`tempData${user.id}.json`, information, action_id);
     }
     return res.status(200).send();

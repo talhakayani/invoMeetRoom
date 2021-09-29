@@ -169,7 +169,6 @@ exports.addInvoMeeting = async (
     if (!data) throw new Error('No data found');
     return { data: true, meeting: data };
   } catch (err) {
-    // console.log(err);
     return { data: false, message: err.response.data.message };
   }
 };

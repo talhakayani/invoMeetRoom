@@ -28,7 +28,6 @@ function getAccessToken(oAuth2Client, channel_id, user_id) {
     access_type: 'offline',
     scope: SCOPES,
   });
-  //   console.log('Authorize this app by visiting this url:', authUrl);
   const message = generateMessageForToken(authUrl);
   sendMessageToSlackUrl(channel_id, 'Google Calendar Authentication', message);
   return oAuth2Client;

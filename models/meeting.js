@@ -89,6 +89,9 @@ module.exports = (sequelize, DataTypes) => {
       tableName: 'meetings',
       modelName: 'Meeting',
       hooks: {
+        /**
+         *  Before CRUD operations hooks
+         */
         beforeValidate: (meetings, options) => {
           let check = true;
           meetings.reservedFrom = new Date(meetings.reservedFrom);
@@ -106,6 +109,30 @@ module.exports = (sequelize, DataTypes) => {
             meetings.reservedTo = new Date(meetings.reservedTo);
             Meeting.reservedTo = meetings.reservedTo;
           }
+        },
+
+        beforeCreate(meetings, options) {
+          console.log('Meeting Before Create', meetings, options);
+        },
+
+        beforeDestroy(meetings, options) {
+          console.log('Meeting Before Destroy', meetings, options);
+        },
+
+        /**
+         *  After CRUD operations hooks
+         */
+        afterValidate(meetings, options) {
+          console.log('Meeting After Validate', meetings, options);
+        },
+        afterCreate(meetings, options) {
+          console.log('Meeting After Create', meetings, options);
+        },
+        afterUpdate(meetings, options) {
+          console.log('Meeting After Update', meetings, options);
+        },
+        afterDestroy(meetings, options) {
+          console.log('Meeting After Destroy', meetings, options);
         },
       },
     }

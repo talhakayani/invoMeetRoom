@@ -26,10 +26,69 @@ module.exports = (sequelize, DataTypes) => {
       calendarId: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 'Primary',
+        defaultValue: 'primary',
       },
     },
     {
+      hooks: {
+        /**
+         *  Before CRUD operations hooks
+         */
+        beforeValidate(calendar_configs, options) {
+          console.log(
+            'Calendar Configration Before validate',
+            calendar_configs,
+            options
+          );
+        },
+        beforeCreate(calendar_configs, options) {
+          console.log(
+            'Calendar Configration Before Create',
+            calendar_configs,
+            options
+          );
+        },
+
+        beforeDestroy(calendar_configs, options) {
+          console.log(
+            'Calendar Configration Before Destroy',
+            calendar_configs,
+            options
+          );
+        },
+
+        /**
+         *  After CRUD operations hooks
+         */
+        afterValidate(calendar_configs, options) {
+          console.log(
+            'Calendar Configration After Validate',
+            calendar_configs,
+            options
+          );
+        },
+        afterCreate(calendar_configs, options) {
+          console.log(
+            'Calendar Configration After Create',
+            calendar_configs,
+            options
+          );
+        },
+        afterUpdate(calendar_configs, options) {
+          console.log(
+            'Calendar Configration After Update',
+            calendar_configs,
+            options
+          );
+        },
+        afterDestroy(calendar_configs, options) {
+          console.log(
+            'Calendar Configration After Destroy',
+            calendar_configs,
+            options
+          );
+        },
+      },
       sequelize,
       tableName: 'calendar_configs',
       modelName: 'CalendarConfig',
