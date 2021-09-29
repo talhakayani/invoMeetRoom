@@ -121,7 +121,6 @@ const roomsSelectionOptions = rooms => {
   return options;
 };
 
-
 exports.generateMessageForUpdate = async selectedInformation => {
   const { selected_room, selected_date, selected_time } = selectedInformation;
   let users = [],
@@ -132,7 +131,6 @@ exports.generateMessageForUpdate = async selectedInformation => {
     selectedInformation.selected_users.length
   ) {
     users = selectedInformation.selected_users;
-  
   }
   let blockJson = [
     {
@@ -184,8 +182,6 @@ exports.generateMessageForToken = tokenURL => {
     },
   ];
 };
-
-/
 
 exports.generateMesssageForMeetings = rooms => {
   let blocks = [
@@ -322,7 +318,6 @@ exports.generateMessageForReservedRooms = async rooms => {
     });
     return blocks;
   }
-
 
   for (let i = 0; i < rooms.length; i++) {
     const data = await getUsersInformation(rooms[i].reservedWith.split(','));
