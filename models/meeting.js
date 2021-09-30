@@ -34,12 +34,12 @@ module.exports = (sequelize, DataTypes) => {
             const enteredReservedFromDate = new Date(this.reservedFrom);
             const enteredReservedToDate = new Date(this.reservedTo);
             const enteredRoomId = this.roomId;
-            console.log(enteredReservedFromDate, enteredReservedToDate);
+            const user = this.reservedBy;
             const meeting = await Meeting.findAll({
               where: {
                 //reservedFrom: this.reservedFrom,
                 // roomId: this.roomId,
-                reservedBy: this.reservedBy,
+                //reservedBy: this.reservedBy,
                 inProgress: 'InProgress',
               },
             });
@@ -49,15 +49,23 @@ module.exports = (sequelize, DataTypes) => {
                 enteredReservedToDate > meeting[i].reservedFrom &&
                 enteredReservedToDate <= meeting[i].reservedTo
               ) {
+                if (meeting[i].reservedBy == user) {
+                  throw new Error(
+                    "You can't reserve this room because this room is already reserved by you. May be you want another meeting in this room so for that you have to specify the time which have no conflict with other meetings or you can choose other rooms available"
+                  );
+                }
+
                 throw new Error(
                   'Your meeting time have conflict with other meeting time, we suggest you to please change the meeting time'
                 );
               }
               if (
-                enteredReservedFromDate >= meeting[i].reservedFrom &&
-                enteredReservedFromDate <= meeting[i].reservedTo
+                // enteredReservedFromDate >= meeting[i].reservedFrom &&
+                // enteredReservedFromDate <= meeting[i].reservedTo
+                enteredReservedToDate > meeting[i].reservedFrom &&
+                enteredReservedToDate <= meeting[i].reservedTo
               ) {
-                if (meeting.roomId != this.roomId) {
+                if (meeting.reservedBy == user) {
                   throw new Error(
                     'You can not reserve the meeting when you already have meeting reserved at the same time in other room'
                   );

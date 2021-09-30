@@ -119,6 +119,9 @@ exports.interactions = async (req, res, _next) => {
             "We're unable to create google event for now please try again or first configure the google calendar"
           )
         );
+        if (fs.existsSync(`tempData${user.id}.json`))
+          fs.unlinkSync(`tempData${user.id}.json`);
+
         return res.status(200).send();
       }
       const googleCalendarEventId = data.id;
@@ -146,6 +149,8 @@ exports.interactions = async (req, res, _next) => {
               : 'Something went wrong, please try agian later'
           )
         );
+        if (fs.existsSync(`tempData${user.id}.json`))
+          fs.unlinkSync(`tempData${user.id}.json`);
         return res.status(200).send();
       }
 
