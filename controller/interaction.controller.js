@@ -149,6 +149,16 @@ exports.interactions = async (req, res, _next) => {
               : 'Something went wrong, please try agian later'
           )
         );
+        const result = await deleteGoogleCalendarEvent(
+          googleCalendarEventId,
+          'primary',
+          oAuth2Client
+        );
+
+        if (result) console.log('Event Deleted');
+        else console.log('unable to delete an event');
+        console.log('Meeting end');
+
         if (fs.existsSync(`tempData${user.id}.json`))
           fs.unlinkSync(`tempData${user.id}.json`);
         return res.status(200).send();
@@ -314,7 +324,7 @@ exports.interactions = async (req, res, _next) => {
     }
 
     if (action_id == 'remove-history') {
-      btnClicked = true;
+     btnClicked = true;
       const response = await removeHistory(user.id);
       sendPrivateMessage(
         channel.id,
