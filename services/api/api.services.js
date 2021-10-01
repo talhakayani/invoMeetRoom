@@ -226,3 +226,16 @@ exports.removeHistory = async userId => {
     return null;
   }
 };
+
+exports.getMeetingHistoryByDate = async (userId, date) => {
+  try {
+    const { data } = await axios.get(
+      DOMAIN + `/meetings/history/${userId}/${date}`
+    );
+    if (!data) return null;
+    return data.meetings;
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+};

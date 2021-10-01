@@ -126,4 +126,33 @@ exports.eventForGoogleCalendar = information => {
   return event;
 };
 
+exports.getDateFromText = text => {
+  let date = new Date();
+  if (text.includes('today')) {
+    return (
+      date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+    );
+  }
+  if (text.includes('yesterday')) {
+    const yesterday = new Date();
+    console.log('yesterday ' + yesterday.setDate(date.getDate() - 1));
+    return (
+      yesterday.getFullYear() +
+      '-' +
+      (yesterday.getMonth() + 1) +
+      '-' +
+      yesterday.getDate()
+    );
+  }
+  const index = text.search(/([1-9])\w+/);
+  if (index < 0) return null;
+
+  date = text.slice(index, index + 10);
+  date = date.split(' ')[0].split('-');
+  if (date.length == 1) return null;
+  if (date[1].length == 1) date[1] = '0' + date[1];
+  if (date[2].length == 1) date[2] = '0' + date[2];
+  return date.join('-');
+};
+
 exports.getDateAndTime = dateTimeForCalander;

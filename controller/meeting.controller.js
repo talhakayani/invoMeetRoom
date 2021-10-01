@@ -1,5 +1,5 @@
 const { Meeting, Room } = require('../models');
-
+const { Op } = require('sequelize');
 exports.addMeeting = async (req, res, _next) => {
   try {
     const { body } = req;
@@ -160,6 +160,38 @@ exports.removeHistory = async (req, res, _next) => {
       status: 200,
       message,
     });
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({ status: 400, message: err.message });
+  }
+};
+
+exports.getMeetingsHistoryByDate = async (req, res, _next) => {
+  try {
+    const { reservedBy, reservedFrom } = req.params;
+    let date = new Date(reservedFrom);
+    const greaterDate = new Date(reservedFrom);
+    greaterDate.setDate(date.getDate() + 1);
+    console.log(date, greaterDate);
+    if (!reservedBy || !reservedFrom)
+      throw new Error('please provide the user id  and date');
+    const meetings = await Meeting.findAll({
+      where: {
+        reservedBy: reservedBy,
+        [Op.and]: [
+          { reservedFrom: { [Op.gte]: date } },
+          { reservedFrom: { [Op.lt]: greaterDate } },
+        ],
+        inProgress: 'EndMeeting',
+      },
+      include: {
+        model: Room,
+        as: 'room',
+      },
+    });
+    let message = 'Meetings Found';
+    if (!meetings.length) message = 'No meetings are available';
+    return res.status(200).json({ status: 200, message, meetings });
   } catch (err) {
     console.log(err);
     return res.status(400).json({ status: 400, message: err.message });

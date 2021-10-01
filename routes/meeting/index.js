@@ -9,4 +9,8 @@ router.get('/history/:reservedBy', controller.getMeetingsHistory);
 router.get('/inProgress/:reservedBy', controller.inProgressMeetingsByUser);
 router.get('/info/:googleCalendarEventId', controller.getInformationByEventId);
 router.delete('/history/remove/:reservedBy', controller.removeHistory);
+router.get(
+  '/history/:reservedBy/:reservedFrom',
+  controller.getMeetingsHistoryByDate
+);
 module.exports = router;

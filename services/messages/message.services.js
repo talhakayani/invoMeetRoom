@@ -241,29 +241,47 @@ exports.generateMesssageForMeetings = rooms => {
   return blocks;
 };
 
-exports.generateMessageForMeetingHistory = meetings => {
-  let blocks = [
-    {
-      type: 'section',
-      text: {
-        type: 'mrkdwn',
-        text: '*Meetings History*',
+exports.generateMessageForMeetingHistory = (meetings, showBtn) => {
+  let blocks = [];
+
+  if (showBtn) {
+    blocks.push(
+      {
+        type: 'section',
+        text: {
+          type: 'mrkdwn',
+          text: '*Meetings History*',
+        },
+        accessory: {
+          type: 'button',
+          text: {
+            type: 'plain_text',
+            text: 'Clear History',
+            emoji: true,
+          },
+          value: 'event is deleted',
+          action_id: 'remove-history',
+        },
       },
-      accessory: {
-        type: 'button',
+      {
+        type: 'divider',
+      }
+    );
+  } else {
+    blocks.push(
+      {
+        type: 'header',
         text: {
           type: 'plain_text',
-          text: 'Clear History',
+          text: 'Meetings History',
           emoji: true,
         },
-        value: 'event is deleted',
-        action_id: 'remove-history',
       },
-    },
-    {
-      type: 'divider',
-    },
-  ];
+      {
+        type: 'divider',
+      }
+    );
+  }
 
   for (let i = 0; i < meetings.length; i++) {
     const room = {
@@ -339,4 +357,16 @@ exports.generateMessageForReservedRooms = async rooms => {
     blocks.push(reservedRoom);
   }
   return blocks;
+};
+
+const roomsSelectionOptionsForDialoge = rooms => {
+  let options = [];
+  rooms.forEach(room => {
+    options.push({
+      label: `${room.name} Located: ${room.location}`,
+      value: `${room.name}`,
+    });
+  });
+
+  return options;
 };

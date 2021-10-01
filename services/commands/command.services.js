@@ -1,4 +1,6 @@
 const { app, client } = require('../../connection/slack.connection');
+const { getAllRooms } = require('../api/api.services');
+
 require('dotenv').config('../../.env');
 
 exports.sendPrivateMessage = async (channel_id, userid, text, message) => {
