@@ -1,5 +1,5 @@
-const { app, client } = require('../../connection/slack.connection');
-const { getAllRooms } = require('../api/api.services');
+const { app, client } = require('../connection/slack.connection');
+const { getAllRooms } = require('./api.services');
 
 require('dotenv').config('../../.env');
 

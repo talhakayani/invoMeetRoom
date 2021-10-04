@@ -1,12 +1,12 @@
 const {
   sendPrivateMessage,
   sendMessageToSlackUrl,
-} = require('../services/commands/command.services');
+} = require('../services/command.services');
 const {
   generateMessageForRooms,
   generateMesssageForMeetings,
   generateMessageForMeetingHistory,
-} = require('../services/messages/message.services');
+} = require('../services/message.services');
 const {
   getAllRooms,
   getGoogleAuthToken,
@@ -14,7 +14,7 @@ const {
   getAllRoomsWithAllMeetingsInProgress,
   getMeetingHistory,
   getMeetingHistoryByDate,
-} = require('../services/api/api.services');
+} = require('../services/api.services');
 require('dotenv').config('../../.env');
 const fs = require('fs');
 const {
@@ -143,8 +143,8 @@ exports.getEndMeetingsHistory = async (req, res, _next) => {
       showBtn = false;
       date = getDateFromText(text.toLowerCase());
       const enteredDate = new Date(date);
-      console.log(!enteredDate);
-      if (!date || enteredDate == 'invalid date') {
+      console.log('Printing date', enteredDate);
+      if (!date || enteredDate == 'Invalid Date') {
         sendPrivateMessage(
           channel_id,
           user_id,
@@ -183,17 +183,21 @@ exports.getEndMeetingsHistory = async (req, res, _next) => {
         'November',
         'December',
       ];
+
+      let message = `Currently you don't have any meeting history on *${
+        days[enteredDate.getDay()]
+      }, ${enteredDate.getDate()} ${
+        monthNames[enteredDate.getMonth()]
+      }, ${enteredDate.getFullYear()}* may be you reserve meetings but untill they are end it will not considered as history`;
+
+      if (!text)
+        message =
+          "Currently you don't have any meeting history, may be you reserve meetings but untill they are end it will not considered as history";
       sendPrivateMessage(
         channel_id,
         user_id,
         'Your history is ready',
-        sendErrorMessage(
-          `Currently you don't have any meeting history on *${
-            days[enteredDate.getDay()]
-          }, ${enteredDate.getDate()} ${
-            monthNames[enteredDate.getMonth()]
-          }, ${enteredDate.getFullYear()}* may be you reserve meetings but untill they are end it will not considered as history`
-        )
+        sendErrorMessage(message)
       );
       return res.status(200).send();
     }

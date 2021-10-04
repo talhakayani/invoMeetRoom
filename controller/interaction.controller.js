@@ -1,12 +1,12 @@
 const {
   generateMessageForUpdate,
-} = require('../services/messages/message.services');
+} = require('../services/message.services');
 const { scheduleJob } = require('node-schedule');
 const {
   updateMessage,
   sendPrivateMessage,
   getUsersInformation,
-} = require('../services/commands/command.services');
+} = require('../services/command.services');
 const {
   updateMeetingStatus,
   addInvoMeeting,
@@ -14,7 +14,7 @@ const {
   addGoogleAuthToken,
   getInformationByMeetingId,
   removeHistory,
-} = require('../services/api/api.services');
+} = require('../services/api.services');
 require('dotenv').config('../../.env');
 const fs = require('fs');
 const { authorize } = require('../services/google_calander/auth');

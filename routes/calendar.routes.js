@@ -1,4 +1,4 @@
-const controller = require('../../controller/google-calendar.controller');
+const controller = require('../controller/google-calendar.controller');
 const router = require('express').Router();
 
 router.post('/token/add', controller.addToken);

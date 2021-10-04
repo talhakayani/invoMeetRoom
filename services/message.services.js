@@ -1,9 +1,9 @@
-const { getUsersInformation } = require('../commands/command.services');
-const { getAllRooms, getRoomInfoByName } = require('../api/api.services');
+const { getUsersInformation } = require('./command.services');
+const { getRoomInfoByName } = require('./api.services');
 const {
   generatedTextForUsers,
   getDateAndTime,
-} = require('../utils/helper-functions');
+} = require('./utils/helper-functions');
 exports.generateMessageForRooms = rooms => {
   let roomsRecord = [
     {
@@ -357,16 +357,4 @@ exports.generateMessageForReservedRooms = async rooms => {
     blocks.push(reservedRoom);
   }
   return blocks;
-};
-
-const roomsSelectionOptionsForDialoge = rooms => {
-  let options = [];
-  rooms.forEach(room => {
-    options.push({
-      label: `${room.name} Located: ${room.location}`,
-      value: `${room.name}`,
-    });
-  });
-
-  return options;
 };

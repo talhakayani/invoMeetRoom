@@ -43,13 +43,14 @@ module.exports = (sequelize, DataTypes) => {
                 inProgress: 'InProgress',
               },
             });
-            for (let i = 0; i < meeting.length; i++) {
+            // for (let i = 0; i < meeting.length; i++) {
+            meeting.forEach(meet => {
               if (
-                meeting[i].roomId == enteredRoomId &&
-                enteredReservedToDate > meeting[i].reservedFrom &&
-                enteredReservedToDate <= meeting[i].reservedTo
+                meet.roomId == enteredRoomId &&
+                enteredReservedToDate > meet.reservedFrom &&
+                enteredReservedToDate <= meet.reservedTo
               ) {
-                if (meeting[i].reservedBy == user) {
+                if (meet.reservedBy == user) {
                   throw new Error(
                     "You can't reserve this room because this room is already reserved by you. May be you want another meeting in this room so for that you have to specify the time which have no conflict with other meetings or you can choose other rooms available"
                   );
@@ -60,10 +61,10 @@ module.exports = (sequelize, DataTypes) => {
                 );
               }
               if (
-                // enteredReservedFromDate >= meeting[i].reservedFrom &&
-                // enteredReservedFromDate <= meeting[i].reservedTo
-                enteredReservedToDate > meeting[i].reservedFrom &&
-                enteredReservedToDate <= meeting[i].reservedTo
+                // enteredReservedFromDate >= meet.reservedFrom &&
+                // enteredReservedFromDate <= meet.reservedTo
+                enteredReservedToDate > meet.reservedFrom &&
+                enteredReservedToDate <= meet.reservedTo
               ) {
                 if (meeting.reservedBy == user) {
                   throw new Error(
@@ -74,7 +75,7 @@ module.exports = (sequelize, DataTypes) => {
                   'You can not reserve the meeting in this room at this time, because there is another meeting reserved at this time'
                 );
               }
-            }
+            });
           },
         },
       },
