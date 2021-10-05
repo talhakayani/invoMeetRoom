@@ -94,9 +94,7 @@ const dateTimeForCalander = (dateTime, hours = 1) => {
   );
   const endDate = new Date(
     new Date(startDate).setHours(startDate.getHours() + hours)
-  ).toLocaleString('en-US', {
-    timeZone: 'Asia/Karachi',
-  });
+  );
   return {
     start: startDate,
     end: endDate,
