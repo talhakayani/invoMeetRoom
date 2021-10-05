@@ -89,9 +89,7 @@ const TIMEOFFSET = '+05:00';
 const dateTimeForCalander = (dateTime, hours = 1) => {
   dateTime.replace(/-/g, ' ');
   const event = new Date(dateTime);
-  const startDate = new Date(
-    event.setTime(setTime(date1.getTime() + date1.getTimezoneOffset()))
-  );
+  const startDate = event;
   const endDate = new Date(
     new Date(startDate).setHours(startDate.getHours() + hours)
   );
