@@ -10,10 +10,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use('/', routes);
-app.use('/api/slack-routes', (req, res) => {
-  return res.status(200).send(req.body.challenge);
-});
+// app.use('/api/slack-routes', (req, res) => {
+//   return res.status(200).send(req.body.challenge);
+// });
 app.listen(PORT, async () => {
   await sequelize.authenticate();
-  console.log(`Server is up on ${PORT} http://localhost:${PORT}`);
+  console.log(`Server is up and is running`);
 });
