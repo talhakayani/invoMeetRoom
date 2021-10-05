@@ -88,10 +88,10 @@ const TIMEOFFSET = '+05:00';
 
 const dateTimeForCalander = (dateTime, hours = 1) => {
   dateTime.replace(/-/g, ' ');
-  const event = new Date(dateTime).toLocaleString('en-US', {
-    timeZone: 'Asia/Karachi',
-  });
-  const startDate = event;
+  const event = new Date(dateTime);
+  const startDate = new Date(
+    event.setTime(setTime(date1.getTime() + date1.getTimezoneOffset()))
+  );
   const endDate = new Date(
     new Date(startDate).setHours(startDate.getHours() + hours)
   ).toLocaleString('en-US', {
