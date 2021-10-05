@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const DOMAIN = 'http://localhost:3000';
+const DOMAIN = 'https://invomeetroom.herokuapp.com';
 /**
  *  Rooms api Services
  */
