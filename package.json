@@ -1,12 +1,13 @@
 {
-  "name": "projectstructure",
+  "name": "invo-meet-room",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Talha Kayani",
   "license": "ISC",
   "dependencies": {
     "@slack/bolt": "^3.7.0",
