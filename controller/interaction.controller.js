@@ -93,7 +93,11 @@ exports.interactions = async (req, res, _next) => {
           users_names.push(selected_users[i].user.profile.real_name);
         }
       }
-      const messageForGoogleEvent =  generatedTextForUsersWithName(users_names);
+      const messageForGoogleEvent = `*${selected_room} Room* is reserved for you with ${generatedTextForUsersWithName(
+        users_names
+      )} on *${selected_date}* at *${selected_time}*\nRoom is located at *${
+        roomInfo.location
+      }*`;
 
       let information = {
         dateTime: selected_date + ':' + selected_time,
