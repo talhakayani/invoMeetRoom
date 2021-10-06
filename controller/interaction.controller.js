@@ -93,10 +93,11 @@ exports.interactions = async (req, res, _next) => {
           users_names.push(selected_users[i].user.profile.real_name);
         }
       }
+      console.log(users_names,generatedTextForUsersWithName(users_names));
 
       let information = {
         dateTime: selected_date + ':' + selected_time,
-        message: generatedTextForUsersWithName(users_names),
+        message: ,
         attendees: emails != null ? emails : [],
         location: roomInfo.location + ', at InvoZone office',
       };
