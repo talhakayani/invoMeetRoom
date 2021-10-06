@@ -27,6 +27,7 @@ const {
   sendErrorMessage,
   eventForGoogleCalendar,
   getDateAndTime,
+  generatedTextForUsersWithName,
 } = require('../services/utils/helper-functions');
 
 exports.interactions = async (req, res, _next) => {
