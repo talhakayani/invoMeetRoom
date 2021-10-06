@@ -1,6 +1,4 @@
-const {
-  generateMessageForUpdate,
-} = require('../services/message.services');
+const { generateMessageForUpdate } = require('../services/message.services');
 const { scheduleJob } = require('node-schedule');
 const {
   updateMessage,
@@ -29,6 +27,7 @@ const {
   sendErrorMessage,
   eventForGoogleCalendar,
   getDateAndTime,
+  generatedTextForUsersWithName,
 } = require('../services/utils/helper-functions');
 
 exports.interactions = async (req, res, _next) => {
@@ -81,7 +80,8 @@ exports.interactions = async (req, res, _next) => {
       const { selected_room, selected_date, selected_time } =
         selectedInformation;
       let selected_users = null,
-        emails = [];
+        emails = [],
+        users_names = [];
       if (
         selectedInformation.hasOwnProperty('selected_users') &&
         selectedInformation.selected_users.length
@@ -90,12 +90,13 @@ exports.interactions = async (req, res, _next) => {
         selected_users = await getUsersInformation(selected_users);
         for (let i = 0; i < selected_users.length; i++) {
           emails.push({ email: selected_users[i].user.profile.email });
+          users_names.push(selected_users[i].user.profile.real_name);
         }
       }
 
       let information = {
         dateTime: selected_date + ':' + selected_time,
-        message: blockJson[1].text.text,
+        message: generatedTextForUsersWithName(users_names),
         attendees: emails != null ? emails : [],
         location: roomInfo.location + ', at InvoZone office',
       };
@@ -324,7 +325,7 @@ exports.interactions = async (req, res, _next) => {
     }
 
     if (action_id == 'remove-history') {
-     btnClicked = true;
+      btnClicked = true;
       const response = await removeHistory(user.id);
       sendPrivateMessage(
         channel.id,

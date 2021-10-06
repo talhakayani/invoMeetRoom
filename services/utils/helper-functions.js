@@ -71,6 +71,17 @@ exports.generatedTextForUsers = users => {
   return text;
 };
 
+exports.generatedTextForUsersWithName = users => {
+  if (!users.length) return '';
+  if (users.length == 1) return `${users[0]}`;
+  let text = 'with ';
+  for (let i = 0; i < users.length - 1; i++) {
+    text += '' + users[i] + ', ';
+  }
+  text += `and ${users[users.length - 1]}`;
+  return text;
+};
+
 exports.sendErrorMessage = message => {
   return [
     {
