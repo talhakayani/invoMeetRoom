@@ -14,6 +14,6 @@ app.use('/', routes);
 //   return res.status(200).send(req.body.challenge);
 // });
 app.listen(PORT, async () => {
-  await sequelize.sync({ force: true });
+  await sequelize.sync();
   console.log(`Server is up and is running`);
 });
