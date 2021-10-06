@@ -1,0 +1,30 @@
+Endpoints: 
+	DOMAIN NAME : https://invomeetroom.herokuapp.com/
+	
+		Google Calendar Configrations EndPoint (only for App):
+			POSTMAN JSON LINK: https://www.getpostman.com/collections/1b48d083c00b4af7afb5
+		Meeting EndPoints (Only for App):
+			POSTMAN JSON LINK: https://www.getpostman.com/collections/622412ad8f9d2953eaab
+		Rooms EndPoints (Used by App and Admin):
+			POSTMAN JSON LINK: https://www.getpostman.com/collections/5948e95d977ad3077b1e
+
+Application:
+	slash Commands:
+		/connect-google-calendar 
+			Description: This command will help you to connnect google calendar with this slack application for only one time
+			
+			NOTE: Still useable for tested users mentioned in GoogleConsole while testing
+		/room-available
+			Description: This command will give you the list of available rooms to reserve. Other details like Attendes of 					meeting, time and date will required by interacting with the elements in this command.
+		
+		/my-meetings
+			Description: This command will show you all the pending meeting that you reserved with all the nessasary details.
+			
+		/reserved-rooms
+			Description: This command will give you the information about the meetings that reserved in the rooms with all the 			nessasary details
+		
+		/meeting-history
+			Description: This command will give you the information about the your end meetings with all the nessasary details 
+			
+			[NOTE]: You can get the meeting history of today, yesterday or any date that you specify in given formate 				[YYYY-MM-DD]  
+		
