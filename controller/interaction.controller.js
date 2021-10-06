@@ -93,7 +93,7 @@ exports.interactions = async (req, res, _next) => {
           users_names.push(selected_users[i].user.profile.real_name);
         }
       }
-      const messageForGoogleEvent =  generatedTextForUsersWithName(users_names));
+      const messageForGoogleEvent =  generatedTextForUsersWithName(users_names);
 
       let information = {
         dateTime: selected_date + ':' + selected_time,
