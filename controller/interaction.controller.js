@@ -27,7 +27,6 @@ const {
   sendErrorMessage,
   eventForGoogleCalendar,
   getDateAndTime,
-  generatedTextForUsersWithName,
 } = require('../services/utils/helper-functions');
 
 exports.interactions = async (req, res, _next) => {
@@ -93,11 +92,11 @@ exports.interactions = async (req, res, _next) => {
           users_names.push(selected_users[i].user.profile.real_name);
         }
       }
-      console.log(users_names,generatedTextForUsersWithName(users_names));
+      console.log(users_names, generatedTextForUsersWithName(users_names));
 
       let information = {
         dateTime: selected_date + ':' + selected_time,
-        message: ,
+        message: blockJson[1].text.text,
         attendees: emails != null ? emails : [],
         location: roomInfo.location + ', at InvoZone office',
       };
