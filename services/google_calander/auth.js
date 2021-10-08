@@ -1,10 +1,9 @@
 const { google } = require('googleapis');
 require('dotenv').config('../../.env');
 const fs = require('fs');
-const { addEvent } = require('../../services/google_calander/utils/operations');
 const { sendMessageToSlackUrl } = require('../command.services');
 const { generateMessageForToken } = require('../message.services');
-const { getTokenData, getGoogleAuthToken } = require('../api.services');
+const { getGoogleAuthToken } = require('../api.services');
 const SCOPES = ['https://www.googleapis.com/auth/calendar'];
 
 exports.authorize = async (credentials, channel_id, user_id, forResponse) => {

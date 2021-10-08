@@ -63,7 +63,7 @@ exports.getInformationFromTheFile = fileName => {
 exports.generatedTextForUsers = users => {
   if (!users.length) return '';
   if (users.length == 1) return `<@${users[0]}>`;
-  let text = 'with ';
+  let text = ' ';
   for (let i = 0; i < users.length - 1; i++) {
     text += '<@' + users[i] + '>, ';
   }
@@ -74,7 +74,7 @@ exports.generatedTextForUsers = users => {
 exports.generatedTextForUsersWithName = users => {
   if (!users.length) return '';
   if (users.length == 1) return `${users[0]}`;
-  let text = 'with ';
+  let text = ' ';
   for (let i = 0; i < users.length - 1; i++) {
     text += '' + users[i] + ', ';
   }

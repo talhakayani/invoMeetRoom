@@ -48,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
               if (
                 meet.roomId == enteredRoomId &&
                 enteredReservedToDate > meet.reservedFrom &&
-                enteredReservedToDate <= meet.reservedTo
+                enteredReservedToDate <= meet.reservedTo 
               ) {
                 if (meet.reservedBy == user) {
                   throw new Error(
