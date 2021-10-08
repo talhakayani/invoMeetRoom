@@ -115,6 +115,7 @@ exports.eventForGoogleCalendar = information => {
   let event = {
     summary: 'InvoMeet Room Reservation',
     location: information.location,
+    sendUpdates: 'all',
     description: information.message.replace(/\*/g, '').replace('/n', ' '),
     start: {
       dateTime: dateTime['start'],
