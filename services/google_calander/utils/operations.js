@@ -7,6 +7,8 @@ exports.addEvent = async (event, auth) => {
       auth: auth,
       calendarId: 'primary',
       resource: event,
+      sendNotifications: true,
+      sendUpdates: 'all',
     });
     if (res.data === '') return null;
     return res.data;
